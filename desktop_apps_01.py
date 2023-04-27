@@ -18,6 +18,24 @@ from tkinter import *
 
 ventana_principal= Tk()
 
+# titulo de la ventana 
+
+ventana_principal.title("especialidad de sistemas")
+
+# tamaño de la ventana
+
+ventana_principal.geometry("500x500")
+
+# deshabilitar boton de maximizar 
+
+ventana_principal.resizable(False,False)
+
+# color del fondo de la ventana
+
+ventana_principal.config(bg=("dark orange"))
+
 # run
+# se ejecuta el metodo mainloop de la clase Tk atravez de la instancia ventana_principal, este metodo despliega la ventana en pantalla
 
 ventana_principal.mainloop()
+
