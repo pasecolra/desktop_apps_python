@@ -34,6 +34,27 @@ ventana_principal.resizable(False,False)
 
 ventana_principal.config(bg=("dark orange"))
 
+#--------------------------------
+# frame amarillo
+#--------------------------------
+frame_amarillo = Frame(ventana_principal)
+frame_amarillo.config(bg="yellow", width=500, height=250)
+frame_amarillo.place(x=0, y=0)
+
+#--------------------------------
+# frame azul
+#--------------------------------
+frame_azul = Frame(ventana_principal)
+frame_azul.config(bg="blue", width=500, height=125)
+frame_azul.place(x=0, y=250)
+
+#--------------------------------
+# frame rojo
+#--------------------------------
+frame_rojo = Frame(ventana_principal)
+frame_rojo.config(bg="red", width=500, height=125)
+frame_rojo.place(x=0, y=375)
+
 # run
 # se ejecuta el metodo mainloop de la clase Tk atravez de la instancia ventana_principal, este metodo despliega la ventana en pantalla
 
