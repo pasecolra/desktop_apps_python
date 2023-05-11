@@ -4,7 +4,7 @@
 
 # se importa la libreria tkinter con todas sus funciones
 from tkinter import *
-from tkinter import messagebox, ttk
+from tkinter import messagebox
 
 #-------------------------
 # funciones de la app
@@ -14,10 +14,10 @@ from tkinter import messagebox, ttk
 def convertir():
     messagebox.showinfo("Temperatura 1.0", "Conversión realizada")
     cent = int(c.get())
-    if combo.get()=="kelvin":
+    if kf.get()=="kelvin":
         k = cent + 273.15
         t_resultados.insert(INSERT, f"\n{int(c.get())} °C equivalen a {k} °K")
-    elif combo.get() == "fahrenheit":
+    elif kf.get() == "fahrenheit":
         f = cent*9/5 + 32
         t_resultados.insert(INSERT, f"\n{int(c.get())} °C equivalen a {f} °F")
     else:
@@ -60,6 +60,23 @@ c = StringVar()
 kf = StringVar()
 
 #--------------------------------
+# barra menu
+#--------------------------------
+barra_menu = Menu()
+ventana_principal.config(menu=barra_menu)
+
+menu_convertir = Menu(tearoff=0)
+menu_convertir.add_command(label="Convertir", command=convertir)
+menu_convertir.add_separator()
+menu_convertir.add_command(label="Borrar", command=borrar)
+
+menu_salir = Menu(tearoff=0)
+menu_salir.add_command(label="Salir", command=salir)
+
+barra_menu.add_cascade(label="Convertir", menu=menu_convertir)
+barra_menu.add_cascade(label="Salir", menu=menu_salir)
+
+#--------------------------------
 # frame entrada datos
 #--------------------------------
 frame_entrada = Frame(ventana_principal)
@@ -86,6 +103,16 @@ entry_c = Entry(frame_entrada, textvariable=c)
 entry_c.config(bg="white", fg="blue", font=("Times New Roman", 18), width=6)
 entry_c.focus_set()
 entry_c.place(x=300,y=60)
+
+# radiobutton para kelvin
+rb_k = Radiobutton(frame_entrada, text="Kelvin", variable=kf, value="kelvin")
+rb_k.config(bg="white", fg="blue", font=("Helvetica", 18))
+rb_k.place(x=240, y=110)
+
+# radiobutton para farenheit
+rb_f = Radiobutton(frame_entrada, text="Fahrenheit", variable=kf, value="fahrenheit")
+rb_f.config(bg="white", fg="blue", font=("Helvetica", 18))
+rb_f.place(x=240, y=140)
 
 #--------------------------------
 # frame operaciones
@@ -118,9 +145,6 @@ t_resultados = Text(frame_resultados)
 t_resultados.config(bg="black", fg="green yellow", font=("Courier", 18))
 t_resultados.place(x=10,y=10,width=460,height=160)
 
-# lista combobox
-combo=ttk.Combobox(state="reandonly",values =["fahrenheit", "kelvin"])
-combo.place(x=240, y =120)
-
 # run
+# se ejecuta el metodo mainloop() de la clase Tk() a través de la instancia ventana_principal. Este metodo despliega la ventana en pantalla y queda a la espera de lo que el usuario haga (click en un boton, escribir, etc).  Cada acción del usuario se conoce como un evento.  El método mainloop() es un bucle infinito.
 ventana_principal.mainloop()
